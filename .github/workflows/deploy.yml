@@ -19,12 +19,18 @@ jobs:
           username: ${{ secrets.HETZNER_SSH_USER }}
           key: ${{ secrets.HETZNER_SSH_KEY }}
           script: |
+            set -e
+
             if [ ! -d /root/tidyshelf/.git ]; then
               rm -rf /root/tidyshelf
               git clone https://github.com/Omika-AI/TidyShelf.git /root/tidyshelf
             fi
             cd /root/tidyshelf
-            git pull origin main
+
+            git remote set-url origin https://github.com/Omika-AI/TidyShelf.git
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
 
             npm ci
 
