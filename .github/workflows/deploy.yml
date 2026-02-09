@@ -40,5 +40,7 @@ jobs:
 
             npm run build
 
-            pm2 restart tidyshelf || pm2 start npm --name "tidyshelf" -- run start
+            pm2 delete tidyshelf || true
+            cd /root/tidyshelf
+            pm2 start npm --name "tidyshelf" -- run start
             pm2 save
