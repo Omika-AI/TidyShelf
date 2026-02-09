@@ -2,7 +2,7 @@
 
 client_id = "66a652d9b9267e4f745513a963ddce75"
 name = "TidyShelf"
-application_url = "https://example.com"
+application_url = "https://tidyshelf.omika.ai"
 embedded = true
 
 [build]
@@ -16,4 +16,4 @@ api_version = "2026-04"
 scopes = "read_inventory,read_products,read_publications,write_products,write_publications"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://tidyshelf.omika.ai/auth/callback" ]
