@@ -4,3 +4,4 @@ build/
 .react-router/
 .claude/
 .playwright-mcp/
+*.sqlite
