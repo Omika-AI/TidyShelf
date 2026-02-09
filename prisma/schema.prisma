@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model Shop {
+  id              String           @id @default(cuid())
+  domain          String           @unique
+  enabled         Boolean          @default(true)
+  defaultBehavior String           @default("PUSH_TO_END")
+  applyToAll      Boolean          @default(true)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  collectionRules CollectionRule[]
+  snapshots       ProductSnapshot[]
+  activityLogs    ActivityLog[]
+}
+
+model CollectionRule {
+  id              String   @id @default(cuid())
+  shopId          String
+  shop            Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  collectionId    String
+  collectionTitle String
+  behavior        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([shopId, collectionId])
+}
+
+model ProductSnapshot {
+  id               String    @id @default(cuid())
+  shopId           String
+  shop             Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  productId        String
+  collectionId     String?
+  originalPosition Int?
+  publicationId    String?
+  action           String
+  status           String    @default("ACTIVE")
+  createdAt        DateTime  @default(now())
+  restoredAt       DateTime?
+
+  @@unique([shopId, productId, collectionId, action, status])
+  @@index([shopId, productId])
+}
+
+model ActivityLog {
+  id           String   @id @default(cuid())
+  shopId       String
+  shop         Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  productId    String
+  productTitle String?
+  action       String
+  detail       String?
+  createdAt    DateTime @default(now())
+
+  @@index([shopId, createdAt])
+}

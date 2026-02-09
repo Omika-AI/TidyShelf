@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* ===========================================
+   KPI GRID
+   =========================================== */
+.dp-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.dp-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dp-kpi-label {
+  font-size: 13px;
+  color: #616161;
+  font-weight: 500;
+}
+
+.dp-kpi-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* ===========================================
+   TABLE STYLES
+   =========================================== */
+.dp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.dp-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  color: #616161;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.dp-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f1f1;
+  vertical-align: middle;
+}
+
+.dp-table tbody tr:hover {
+  background: #f6f6f7;
+}
+
+.dp-table th:last-child,
+.dp-table td:last-child {
+  text-align: right;
+}
+
+/* ===========================================
+   BADGES
+   =========================================== */
+.dp-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.dp-badge--deprioritized {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.dp-badge--hidden {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.dp-badge--hide {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.dp-badge--restored_position,
+.dp-badge--restored_visibility {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.dp-badge--skipped {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.dp-badge--push_to_end {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.dp-badge--exclude {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* ===========================================
+   SECTION HEADERS
+   =========================================== */
+.dp-section-header {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+}
+
+.dp-subsection-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 20px 0 12px 0;
+}
+
+/* ===========================================
+   FORM ELEMENTS
+   =========================================== */
+.dp-field-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dp-field-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.dp-select {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #fff;
+  appearance: auto;
+}
+
+.dp-select:focus {
+  outline: none;
+  border-color: #005bd3;
+  box-shadow: 0 0 0 2px rgba(0, 91, 211, 0.15);
+}
+
+.dp-helper-text {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.dp-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dp-add-rule-form {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f1f1;
+}
+
+/* ===========================================
+   PAGINATION
+   =========================================== */
+.dp-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f1f1;
+}
+
+.dp-pagination-link {
+  color: #005bd3;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.dp-pagination-link:hover {
+  text-decoration: underline;
+}
+
+.dp-pagination-info {
+  font-size: 14px;
+  color: #6b7280;
+}

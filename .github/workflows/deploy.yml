@@ -1,0 +1,38 @@
+name: Deploy to Hetzner
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - name: SSH into Hetzner and deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_SSH_USER }}
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          script: |
+            if [ ! -d /root/tidyshelf/.git ]; then
+              rm -rf /root/tidyshelf
+              git clone https://github.com/Omika-AI/TidyShelf.git /root/tidyshelf
+            fi
+            cd /root/tidyshelf
+            git pull origin main
+
+            npm ci
+
+            set -a && source .env && set +a
+            npx prisma generate
+            npx prisma migrate deploy
+
+            npm run build
+
+            pm2 restart tidyshelf || pm2 start npm --name "tidyshelf" -- run start
+            pm2 save
